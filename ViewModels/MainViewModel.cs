@@ -2,13 +2,13 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.Logging;
-using PSForge.Core;
-using PSForge.Models;
-using PSForge.Services;
-using CmdletInfo = PSForge.Models.CmdletInfo;
-using ModuleInfo = PSForge.Models.ModuleInfo;
+using PSBench.Core;
+using PSBench.Models;
+using PSBench.Services;
+using CmdletInfo = PSBench.Models.CmdletInfo;
+using ModuleInfo = PSBench.Models.ModuleInfo;
 
-namespace PSForge.ViewModels;
+namespace PSBench.ViewModels;
 
 /// <summary>
 /// Primary ViewModel for the main application window.
@@ -241,7 +241,7 @@ public partial class MainViewModel : ObservableObject
     private static string GetLogDirectory()
     {
         var appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-        return System.IO.Path.Combine(appData, "PSForge", "logs");
+        return System.IO.Path.Combine(appData, "PSBench", "logs");
     }
 
     private bool CanLoadModule() => SelectedModule != null;

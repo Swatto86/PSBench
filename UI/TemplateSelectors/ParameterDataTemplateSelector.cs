@@ -1,8 +1,8 @@
 using System.Windows;
 using System.Windows.Controls;
-using PSForge.ViewModels;
+using PSBench.ViewModels;
 
-namespace PSForge.UI.TemplateSelectors;
+namespace PSBench.UI.TemplateSelectors;
 
 /// <summary>
 /// Selects the appropriate DataTemplate for a parameter based on its type.

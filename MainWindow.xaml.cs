@@ -1,10 +1,10 @@
 using System.Windows;
 using System.Windows.Input;
 using Microsoft.Extensions.DependencyInjection;
-using PSForge.Models;
-using PSForge.ViewModels;
+using PSBench.Models;
+using PSBench.ViewModels;
 
-namespace PSForge;
+namespace PSBench;
 
 /// <summary>
 /// Code-behind for MainWindow.
@@ -24,7 +24,7 @@ public partial class MainWindow : Window
         DataContext = _viewModel;
 
         // Discover available modules on startup, then auto-load if a module name was
-        // passed as a CLI argument (e.g., PSForge.exe Microsoft.PowerShell.Management).
+        // passed as a CLI argument (e.g., PSBench.exe Microsoft.PowerShell.Management).
         Loaded += async (_, _) =>
         {
             await _viewModel.DiscoverModulesCommand.ExecuteAsync(null);

@@ -2,7 +2,7 @@ using System.Management.Automation;
 using System.Management.Automation.Runspaces;
 using Microsoft.Extensions.Logging;
 
-namespace PSForge.Core;
+namespace PSBench.Core;
 
 /// <summary>
 /// Manages the PowerShell runspace lifecycle for the application.

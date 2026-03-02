@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Management.Automation;
 using Microsoft.Extensions.Logging;
-using PSForge.Models;
-using ParameterInfo = PSForge.Models.ParameterInfo;
-using CmdletInfo = PSForge.Models.CmdletInfo;
-using ModuleInfo = PSForge.Models.ModuleInfo;
+using PSBench.Models;
+using ParameterInfo = PSBench.Models.ParameterInfo;
+using CmdletInfo = PSBench.Models.CmdletInfo;
+using ModuleInfo = PSBench.Models.ModuleInfo;
 
-namespace PSForge.Core;
+namespace PSBench.Core;
 
 /// <summary>
 /// Provides PowerShell module introspection capabilities using the introspection runspace.

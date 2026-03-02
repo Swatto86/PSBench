@@ -1,7 +1,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace PSForge.UI.Converters;
+namespace PSBench.UI.Converters;
 
 /// <summary>
 /// Converts a parameter type name to a user-friendly description of the expected input format.

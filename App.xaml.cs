@@ -1,13 +1,13 @@
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using PSForge.Core;
-using PSForge.Logging;
-using PSForge.Services;
-using PSForge.ViewModels;
+using PSBench.Core;
+using PSBench.Logging;
+using PSBench.Services;
+using PSBench.ViewModels;
 using Serilog;
 
-namespace PSForge;
+namespace PSBench;
 
 /// <summary>
 /// Application entry point and dependency injection container setup.
@@ -30,7 +30,7 @@ public partial class App : Application
 
     /// <summary>
     /// Module name passed via command-line argument, if any.
-    /// Usage: PSForge.exe ModuleName   (e.g., PSForge.exe Microsoft.PowerShell.Management)
+    /// Usage: PSBench.exe ModuleName   (e.g., PSBench.exe Microsoft.PowerShell.Management)
     /// When set, the app auto-discovers modules and immediately loads this one on startup.
     /// </summary>
     public static string? StartupModuleName { get; private set; }
@@ -51,12 +51,12 @@ public partial class App : Application
         Services = _serviceProvider;
 
         var logger = _serviceProvider.GetRequiredService<ILogger<App>>();
-        logger.LogInformation("=== PSForge Application Starting ===");
+        logger.LogInformation("=== PSBench Application Starting ===");
         logger.LogInformation("Version: {Version}", GetType().Assembly.GetName().Version);
         logger.LogInformation("Log Directory: {LogDir}", FileLoggerConfiguration.GetLogDirectory());
 
         // Capture command-line arguments: first arg is treated as a module name to auto-load.
-        // Usage: PSForge.exe <ModuleName>
+        // Usage: PSBench.exe <ModuleName>
         if (e.Args.Length > 0 && !string.IsNullOrWhiteSpace(e.Args[0]))
         {
             StartupModuleName = e.Args[0].Trim();
@@ -77,7 +77,7 @@ public partial class App : Application
     private void Application_Exit(object sender, ExitEventArgs e)
     {
         var logger = _serviceProvider?.GetService<ILogger<App>>();
-        logger?.LogInformation("=== PSForge Application Exiting (Code: {ExitCode}) ===", e.ApplicationExitCode);
+        logger?.LogInformation("=== PSBench Application Exiting (Code: {ExitCode}) ===", e.ApplicationExitCode);
         
         _serviceProvider?.Dispose();
         Log.CloseAndFlush();
@@ -94,7 +94,7 @@ public partial class App : Application
     /// </summary>
     private static void ConfigureServices(IServiceCollection services)
     {
-        // Logging - use Serilog with file output to %APPDATA%\PSForge\logs
+        // Logging - use Serilog with file output to %APPDATA%\PSBench\logs
         services.AddLogging(builder => builder.AddFileLogging());
 
         // Core (singleton — one session manager with persistent runspaces)
@@ -140,7 +140,7 @@ public partial class App : Application
 
                 MessageBox.Show(
                     $"An unexpected error occurred:\n\n{ex.GetType().Name}: {ex.Message}\n\nStack trace:\n{ex.StackTrace}",
-                    "PSForge — Error",
+                    "PSBench — Error",
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
@@ -160,7 +160,7 @@ public partial class App : Application
                 {
                     MessageBox.Show(
                         $"A background error occurred:\n\n{ex.Message}",
-                        "PSForge — Background Error",
+                        "PSBench — Background Error",
                         MessageBoxButton.OK,
                         MessageBoxImage.Warning);
                 });

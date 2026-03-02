@@ -1,9 +1,9 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using PSForge.ViewModels;
+using PSBench.ViewModels;
 
-namespace PSForge.UI.Controls;
+namespace PSBench.UI.Controls;
 
 /// <summary>
 /// Code-behind for ParameterFormControl.

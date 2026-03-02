@@ -1,6 +1,6 @@
 using System.Windows.Controls;
 
-namespace PSForge.UI.Controls;
+namespace PSBench.UI.Controls;
 
 /// <summary>
 /// Code-behind for OutputGridControl.

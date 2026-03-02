@@ -1,7 +1,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace PSForge.UI.Converters;
+namespace PSBench.UI.Converters;
 
 /// <summary>
 /// Inverts a boolean value. True → False, False → True.

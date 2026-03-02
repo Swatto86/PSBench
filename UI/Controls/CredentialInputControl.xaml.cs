@@ -2,9 +2,9 @@ using System.Management.Automation;
 using System.Security;
 using System.Windows;
 using System.Windows.Controls;
-using PSForge.ViewModels;
+using PSBench.ViewModels;
 
-namespace PSForge.UI.Controls;
+namespace PSBench.UI.Controls;
 
 /// <summary>
 /// Code-behind for CredentialInputControl.

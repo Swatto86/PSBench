@@ -2,7 +2,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace PSForge.UI.Converters;
+namespace PSBench.UI.Converters;
 
 /// <summary>
 /// Converts a boolean value to a <see cref="Visibility"/> value.

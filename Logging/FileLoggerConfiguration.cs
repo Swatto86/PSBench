@@ -3,28 +3,28 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Events;
 
-namespace PSForge.Logging;
+namespace PSBench.Logging;
 
 /// <summary>
-/// Configures file-based logging to %APPDATA%\PSForge\logs.
+/// Configures file-based logging to %APPDATA%\PSBench\logs.
 /// Provides structured, timestamped logs that persist for troubleshooting.
 /// </summary>
 public static class FileLoggerConfiguration
 {
     /// <summary>
-    /// Configures Serilog to write structured logs to %APPDATA%\PSForge\logs.
+    /// Configures Serilog to write structured logs to %APPDATA%\PSBench\logs.
     /// Log files are rotated daily and kept for 14 days.
-    /// Debug mode (PSFORGE_DEBUG=1) enables verbose trace-level logging.
+    /// Debug mode (PSBench_DEBUG=1) enables verbose trace-level logging.
     /// </summary>
     public static void Initialize()
     {
         var logDir = GetLogDirectory();
         Directory.CreateDirectory(logDir);
 
-        var logFilePath = Path.Combine(logDir, "psforge-.log");
+        var logFilePath = Path.Combine(logDir, "PSBench-.log");
 
         // Determine log level from environment variable
-        var debugMode = Environment.GetEnvironmentVariable("PSFORGE_DEBUG");
+        var debugMode = Environment.GetEnvironmentVariable("PSBench_DEBUG");
         var minLevel = !string.IsNullOrEmpty(debugMode) && debugMode != "0"
             ? LogEventLevel.Verbose
             : LogEventLevel.Debug;
@@ -45,12 +45,12 @@ public static class FileLoggerConfiguration
     }
 
     /// <summary>
-    /// Gets the log directory path: %APPDATA%\PSForge\logs
+    /// Gets the log directory path: %APPDATA%\PSBench\logs
     /// </summary>
     public static string GetLogDirectory()
     {
         var appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-        return Path.Combine(appData, "PSForge", "logs");
+        return Path.Combine(appData, "PSBench", "logs");
     }
 
     /// <summary>

@@ -1,9 +1,9 @@
-<Window x:Class="PSForge.MainWindow"
+<Window x:Class="PSBench.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:controls="clr-namespace:PSForge.UI.Controls"
-        xmlns:vm="clr-namespace:PSForge.ViewModels"
-        Title="PSForge — PowerShell Module GUI"
+        xmlns:controls="clr-namespace:PSBench.UI.Controls"
+        xmlns:vm="clr-namespace:PSBench.ViewModels"
+        Title="PSBench — PowerShell Module GUI"
         Width="1280" Height="800"
         MinWidth="900" MinHeight="600"
         WindowStartupLocation="CenterScreen"
@@ -51,7 +51,7 @@
 
                 <!-- App title + loaded module name -->
                 <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock Text="⚡ PSForge"
+                    <TextBlock Text="⚡ PSBench"
                                FontSize="18" FontWeight="Bold" Foreground="White"/>
                     <TextBlock Text="{Binding StatusText, StringFormat=' — {0}'}"
                                FontSize="14" Foreground="#CCFFFFFF"

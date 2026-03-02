@@ -1,9 +1,9 @@
 using System.Security;
 using System.Windows;
 using System.Windows.Controls;
-using PSForge.ViewModels;
+using PSBench.ViewModels;
 
-namespace PSForge.UI.Helpers;
+namespace PSBench.UI.Helpers;
 
 /// <summary>
 /// Attached property helper for PasswordBox binding to ParameterValueViewModel.

@@ -2,9 +2,9 @@ using System.Diagnostics;
 using System.Management.Automation;
 using System.Security;
 using Microsoft.Extensions.Logging;
-using PSForge.Models;
+using PSBench.Models;
 
-namespace PSForge.Core;
+namespace PSBench.Core;
 
 /// <summary>
 /// Builds and invokes PowerShell cmdlet pipelines from parameter dictionaries.

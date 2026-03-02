@@ -1,9 +1,9 @@
-namespace PSForge.Models;
+namespace PSBench.Models;
 
 /// <summary>
 /// Encapsulates the complete result of a PowerShell cmdlet invocation,
 /// including output objects, error/warning streams, and timing information.
-/// Used by <see cref="PSForge.ViewModels.OutputViewModel"/> to display results.
+/// Used by <see cref="PSBench.ViewModels.OutputViewModel"/> to display results.
 /// </summary>
 public sealed class ExecutionResult
 {
