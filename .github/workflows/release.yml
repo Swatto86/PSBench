@@ -24,7 +24,7 @@ jobs:
       - name: Verify required files
         shell: pwsh
         run: |
-          $required = @('LICENSE', 'psforge.ico', 'installer.nsi', 'PSForge.csproj')
+          $required = @('LICENSE', 'psbench.ico', 'installer.nsi', 'PSBench.csproj')
           foreach ($file in $required) {
             if (-not (Test-Path $file)) {
               Write-Error "Required file missing: $file"
@@ -43,11 +43,11 @@ jobs:
           echo "Version: $version"
       
       - name: Restore dependencies
-        run: dotnet restore PSForge.csproj
+        run: dotnet restore PSBench.csproj
       
       - name: Publish application (framework-dependent)
         run: |
-          dotnet publish PSForge.csproj `
+          dotnet publish PSBench.csproj `
             -c Release `
             -r win-x64 `
             --self-contained false `
@@ -74,7 +74,7 @@ jobs:
           }
           
           # Verify installer was created
-          $installerPath = "bin\installer\PSForge-${{ steps.version.outputs.VERSION }}-Setup.exe"
+          $installerPath = "bin\installer\PSBench-${{ steps.version.outputs.VERSION }}-Setup.exe"
           if (-not (Test-Path $installerPath)) {
             Write-Error "Installer not found at: $installerPath"
             exit 1
@@ -86,16 +86,16 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          name: PSForge ${{ steps.version.outputs.VERSION }}
+          name: PSBench ${{ steps.version.outputs.VERSION }}
           body: |
-            ## PSForge ${{ steps.version.outputs.VERSION }}
+            ## PSBench ${{ steps.version.outputs.VERSION }}
             
             ### Installation
             
-            1. Download `PSForge-${{ steps.version.outputs.VERSION }}-Setup.exe`
+            1. Download `PSBench-${{ steps.version.outputs.VERSION }}-Setup.exe`
             2. Run the installer
             3. The installer will detect and offer to install .NET 8.0 Desktop Runtime if missing
-            4. Launch PSForge from the Start Menu
+            4. Launch PSBench from the Start Menu
             
             ### Requirements
             
@@ -107,7 +107,7 @@ jobs:
             
             See the commit history for details.
           files: |
-            bin/installer/PSForge-${{ steps.version.outputs.VERSION }}-Setup.exe
+            bin/installer/PSBench-${{ steps.version.outputs.VERSION }}-Setup.exe
           draft: false
           prerelease: false
         env:
@@ -118,6 +118,6 @@ jobs:
         run: |
           Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" -ForegroundColor Green
           Write-Host "  Release ${{ github.ref_name }} published successfully!" -ForegroundColor Green
-          Write-Host "  Installer: PSForge-${{ steps.version.outputs.VERSION }}-Setup.exe" -ForegroundColor Green
+          Write-Host "  Installer: PSBench-${{ steps.version.outputs.VERSION }}-Setup.exe" -ForegroundColor Green
           Write-Host "  URL: https://github.com/${{ github.repository }}/releases/tag/${{ github.ref_name }}" -ForegroundColor Green
           Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" -ForegroundColor Green
