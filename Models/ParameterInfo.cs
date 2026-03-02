@@ -1,12 +1,12 @@
 using System.Management.Automation;
 
-namespace PSForge.Models;
+namespace PSBench.Models;
 
 /// <summary>
 /// Represents metadata about a single parameter of a cmdlet.
 /// Captures type information, validation constraints, and parameter set membership
 /// to drive dynamic UI control generation via
-/// <see cref="PSForge.UI.TemplateSelectors.ParameterDataTemplateSelector"/>.
+/// <see cref="PSBench.UI.TemplateSelectors.ParameterDataTemplateSelector"/>.
 /// </summary>
 public sealed class ParameterInfo
 {

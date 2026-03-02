@@ -1,8 +1,8 @@
 using System.Collections.Concurrent;
 using Microsoft.Extensions.Logging;
-using PSForge.Core;
+using PSBench.Core;
 
-namespace PSForge.Services;
+namespace PSBench.Services;
 
 /// <summary>
 /// Fetches and caches full Get-Help output per cmdlet.

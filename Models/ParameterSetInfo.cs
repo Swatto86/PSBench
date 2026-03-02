@@ -1,4 +1,4 @@
-namespace PSForge.Models;
+namespace PSBench.Models;
 
 /// <summary>
 /// Represents a named parameter set for a cmdlet.

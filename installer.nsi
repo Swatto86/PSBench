@@ -1,5 +1,5 @@
 ; ============================================================================
-; PSForge NSIS Installer Script
+; PSBench NSIS Installer Script
 ; ============================================================================
 ; Produces a standard Windows installer that:
 ;   - Detects and offers to install .NET 8.0 Desktop Runtime if missing
@@ -17,18 +17,18 @@
 !include "x64.nsh"
 
 ; ── Version info (updated by update-application.ps1) ────────────────────────
-!define PRODUCT_NAME      "PSForge"
+!define PRODUCT_NAME      "PSBench"
 !define PRODUCT_VERSION   "1.0.6"
 !define PRODUCT_PUBLISHER "Swatto"
 !define PRODUCT_WEB_SITE  ""
-!define PRODUCT_EXE       "PSForge.exe"
+!define PRODUCT_EXE       "PSBench.exe"
 !define DOTNET_VERSION    "8.0"
 !define DOTNET_RUNTIME_URL "https://aka.ms/dotnet/8.0/windowsdesktop-runtime-win-x64.exe"
 
 ; ── Output & source dirs ────────────────────────────────────────────────────
 !define PUBLISH_DIR       "bin\publish"
 !define INSTALLER_OUTPUT  "bin\installer"
-OutFile "${INSTALLER_OUTPUT}\PSForge-${PRODUCT_VERSION}-Setup.exe"
+OutFile "${INSTALLER_OUTPUT}\PSBench-${PRODUCT_VERSION}-Setup.exe"
 
 ; ── Installer attributes ────────────────────────────────────────────────────
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
@@ -44,8 +44,8 @@ SetCompressorDictSize 32
 
 ; ── MUI settings ────────────────────────────────────────────────────────────
 !define MUI_ABORTWARNING
-!define MUI_ICON "psforge.ico"
-!define MUI_UNICON "psforge.ico"
+!define MUI_ICON "PSBench.ico"
+!define MUI_UNICON "PSBench.ico"
 
 ; ── Pages ───────────────────────────────────────────────────────────────────
 !insertmacro MUI_PAGE_WELCOME
@@ -66,7 +66,7 @@ SetCompressorDictSize 32
 Function .onInit
   ; Ensure 64-bit Windows
   ${IfNot} ${RunningX64}
-    MessageBox MB_OK|MB_ICONSTOP "PSForge requires 64-bit Windows."
+    MessageBox MB_OK|MB_ICONSTOP "PSBench requires 64-bit Windows."
     Abort
   ${EndIf}
 FunctionEnd
@@ -116,7 +116,7 @@ Function CheckDotNetRuntime
 
   AbortInstall:
     MessageBox MB_OK|MB_ICONSTOP \
-      "PSForge cannot run without .NET ${DOTNET_VERSION} Desktop Runtime.$\nInstallation will now abort."
+      "PSBench cannot run without .NET ${DOTNET_VERSION} Desktop Runtime.$\nInstallation will now abort."
     Abort
 
   DotNetDone:

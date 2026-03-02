@@ -1,4 +1,4 @@
-namespace PSForge.Models;
+namespace PSBench.Models;
 
 /// <summary>
 /// Represents metadata for a single cmdlet (or function) within a PowerShell module.

@@ -3,10 +3,10 @@ using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.Logging;
-using PSForge.Models;
-using PSForge.Services;
+using PSBench.Models;
+using PSBench.Services;
 
-namespace PSForge.ViewModels;
+namespace PSBench.ViewModels;
 
 /// <summary>
 /// ViewModel for the output panel. Displays command execution results

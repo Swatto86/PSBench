@@ -1,8 +1,8 @@
 using Microsoft.Extensions.Logging;
-using PSForge.Core;
-using PSForge.Models;
+using PSBench.Core;
+using PSBench.Models;
 
-namespace PSForge.Services;
+namespace PSBench.Services;
 
 /// <summary>
 /// High-level service for discovering and loading PowerShell modules.

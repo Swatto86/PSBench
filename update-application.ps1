@@ -1,11 +1,11 @@
 <#
 .SYNOPSIS
-    Builds, publishes, packages, and optionally tags a new release of PSForge.
+    Builds, publishes, packages, and optionally tags a new release of PSBench.
 
 .DESCRIPTION
-    Automates the PSForge release pipeline:
+    Automates the PSBench release pipeline:
       1. Validates the supplied semantic version.
-      2. Updates version strings in PSForge.csproj and installer.nsi.
+      2. Updates version strings in PSBench.csproj and installer.nsi.
       3. Publishes a framework-dependent Release build (win-x64).
       4. Compiles the NSIS installer to produce a distributable setup executable.
       5. Collects release notes.
@@ -73,7 +73,7 @@ function Write-Fail   { param([string]$Msg) Write-Host "  ✗ $Msg" -ForegroundC
 
 # ── Paths ───────────────────────────────────────────────────────────────────────
 $ProjectDir   = $PSScriptRoot
-$CsprojPath   = Join-Path $ProjectDir 'PSForge.csproj'
+$CsprojPath   = Join-Path $ProjectDir 'PSBench.csproj'
 $NsiPath      = Join-Path $ProjectDir 'installer.nsi'
 $PublishDir   = Join-Path $ProjectDir 'bin' 'publish'
 $InstallerDir = Join-Path $ProjectDir 'bin' 'installer'
@@ -128,7 +128,7 @@ if ($Version -eq $currentVer -and -not $Force) {
 Write-Step "Version: $currentVer → $Version"
 
 # ── 2. Update manifests ────────────────────────────────────────────────────────
-Write-Step "Updating version in PSForge.csproj and installer.nsi"
+Write-Step "Updating version in PSBench.csproj and installer.nsi"
 
 $assemblyVer = "$($Matches['major']).$($Matches['minor']).$($Matches['patch']).0"
 
@@ -172,7 +172,7 @@ if (-not $DryRun) {
         exit 1
     }
 
-    $exe = Join-Path $PublishDir 'PSForge.exe'
+    $exe = Join-Path $PublishDir 'PSBench.exe'
     if (-not (Test-Path $exe)) {
         Write-Fail "Expected output not found: $exe"
         & git checkout -- $CsprojPath $NsiPath 2>$null
@@ -217,7 +217,7 @@ if ($SkipInstaller) {
             Pop-Location
         }
 
-        $setupExe = Join-Path $InstallerDir "PSForge-${Version}-Setup.exe"
+        $setupExe = Join-Path $InstallerDir "PSBench-${Version}-Setup.exe"
         if (Test-Path $setupExe) {
             $setupSize = [math]::Round((Get-Item $setupExe).Length / 1MB, 2)
             Write-Ok "Installer → $setupExe ($setupSize MB)"
@@ -283,7 +283,7 @@ if ($SkipGit) {
 
 Write-Host ''
 Write-Host "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" -ForegroundColor DarkGray
-Write-Host "  PSForge v$Version" -ForegroundColor White
+Write-Host "  PSBench v$Version" -ForegroundColor White
 Write-Host "  Published files : $PublishDir" -ForegroundColor White
 if (-not $SkipInstaller -and -not $DryRun) {
     Write-Host "  Installer       : $InstallerDir" -ForegroundColor White

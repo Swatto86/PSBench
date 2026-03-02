@@ -1,8 +1,8 @@
-namespace PSForge.Models;
+namespace PSBench.Models;
 
 /// <summary>
 /// Represents metadata about an installed PowerShell module.
-/// Populated from Get-Module -ListAvailable output by <see cref="PSForge.Core.ModuleIntrospector"/>.
+/// Populated from Get-Module -ListAvailable output by <see cref="PSBench.Core.ModuleIntrospector"/>.
 /// </summary>
 public sealed class ModuleInfo
 {

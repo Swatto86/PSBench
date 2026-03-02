@@ -1,10 +1,10 @@
-# PSForge
+# PSBench
 
 A modern Windows GUI application for executing and managing PowerShell commands with an intuitive interface.
 
 ## Overview
 
-PSForge provides a user-friendly graphical interface for PowerShell scripting and command execution. It enables users to discover available cmdlets, explore module information, and execute commands with parameter validation and credential management—all without leaving the GUI.
+PSBench provides a user-friendly graphical interface for PowerShell scripting and command execution. It enables users to discover available cmdlets, explore module information, and execute commands with parameter validation and credential management—all without leaving the GUI.
 
 ## Features
 
@@ -49,12 +49,12 @@ dotnet build -c Release
 
 ## Publishing & Installer
 
-PSForge is distributed as a standard Windows installer built with [NSIS](https://nsis.sourceforge.io). The application is published **framework-dependent** (requires .NET 8.0 Desktop Runtime on the target machine) to keep the installer small.
+PSBench is distributed as a standard Windows installer built with [NSIS](https://nsis.sourceforge.io). The application is published **framework-dependent** (requires .NET 8.0 Desktop Runtime on the target machine) to keep the installer small.
 
 ### Quick Publish
 
 ```bash
-dotnet publish PSForge.csproj -c Release -r win-x64 --self-contained false -o bin/publish
+dotnet publish PSBench.csproj -c Release -r win-x64 --self-contained false -o bin/publish
 ```
 
 Or use the publish profile:
@@ -69,15 +69,15 @@ Prerequisites: [NSIS 3.x](https://nsis.sourceforge.io) with `makensis` on PATH.
 
 ```bash
 # Publish first, then compile the installer
-dotnet publish PSForge.csproj -c Release -r win-x64 --self-contained false -o bin/publish
+dotnet publish PSBench.csproj -c Release -r win-x64 --self-contained false -o bin/publish
 makensis installer.nsi
 ```
 
-The setup executable is written to `bin/installer/PSForge-<version>-Setup.exe`.
+The setup executable is written to `bin/installer/PSBench-<version>-Setup.exe`.
 
 The installer:
 - Detects whether .NET 8.0 Desktop Runtime is installed and offers to download it if missing
-- Installs to `Program Files\PSForge`
+- Installs to `Program Files\PSBench`
 - Creates Start Menu shortcuts
 - Registers an uninstaller in Add/Remove Programs
 - Supports silent installation via `/S` flag
@@ -112,7 +112,7 @@ The repository includes a GitHub Actions workflow ([`.github/workflows/release.y
    - Publishes the application (framework-dependent)
    - Builds the NSIS installer
    - Creates a GitHub release with the installer as a downloadable asset
-4. Users download `PSForge-{version}-Setup.exe` from the [Releases page](../../releases)
+4. Users download `PSBench-{version}-Setup.exe` from the [Releases page](../../releases)
 
 **Requirements for CI:**
 - Repository must be on GitHub
@@ -126,7 +126,7 @@ git push origin v1.2.0
 ```
 
 The workflow creates a release with:
-- Installer executable (`PSForge-{version}-Setup.exe`)
+- Installer executable (`PSBench-{version}-Setup.exe`)
 - Auto-generated release notes
 - Installation instructions
 
@@ -136,18 +136,18 @@ The workflow creates a release with:
 
 ```bash
 # After building
-./bin/Debug/net8.0-windows/PSForge.exe
+./bin/Debug/net8.0-windows/PSBench.exe
 ```
 
 ### From Visual Studio
 
-- Open `PSForge.csproj` in Visual Studio 2022
+- Open `PSBench.csproj` in Visual Studio 2022
 - Press `F5` to build and run
 
 ## Project Structure
 
 ```
-PSForge/
+PSBench/
 ├── Core/                          # Core business logic
 │   ├── CommandExecutor.cs         # Command execution engine
 │   ├── ModuleIntrospector.cs      # PowerShell module reflection
@@ -185,12 +185,12 @@ PSForge/
 │
 ├── App.xaml                       # Application configuration
 ├── MainWindow.xaml                # Main window UI
-└── PSForge.csproj                # Project file
+└── PSBench.csproj                # Project file
 ```
 
 ## Architecture
 
-PSForge follows the **MVVM (Model-View-ViewModel)** pattern:
+PSBench follows the **MVVM (Model-View-ViewModel)** pattern:
 
 - **Models**: Represent PowerShell entities (cmdlets, modules, parameters)
 - **ViewModels**: Handle business logic and state management
@@ -215,7 +215,7 @@ PSForge follows the **MVVM (Model-View-ViewModel)** pattern:
 
 ## Contributing
 
-When contributing to PSForge, please:
+When contributing to PSBench, please:
 
 - Follow the existing code structure and naming conventions
 - Maintain separation between business logic and UI code

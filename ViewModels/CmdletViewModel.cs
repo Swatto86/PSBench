@@ -2,13 +2,13 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.Logging;
-using PSForge.Core;
-using PSForge.Models;
-using PSForge.Services;
-using CmdletInfo = PSForge.Models.CmdletInfo;
-using ParameterSetInfo = PSForge.Models.ParameterSetInfo;
+using PSBench.Core;
+using PSBench.Models;
+using PSBench.Services;
+using CmdletInfo = PSBench.Models.CmdletInfo;
+using ParameterSetInfo = PSBench.Models.ParameterSetInfo;
 
-namespace PSForge.ViewModels;
+namespace PSBench.ViewModels;
 
 /// <summary>
 /// ViewModel for the cmdlet detail view. Manages the active parameter set,

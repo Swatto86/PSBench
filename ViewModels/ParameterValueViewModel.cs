@@ -1,14 +1,14 @@
 using CommunityToolkit.Mvvm.ComponentModel;
-using PSForge.Models;
-using ParameterInfo = PSForge.Models.ParameterInfo;
+using PSBench.Models;
+using ParameterInfo = PSBench.Models.ParameterInfo;
 
-namespace PSForge.ViewModels;
+namespace PSBench.ViewModels;
 
 /// <summary>
 /// Wraps a <see cref="ParameterInfo"/> with a mutable value property for data binding.
 /// Each instance represents one parameter field in the dynamic form,
 /// providing the current value, validation state, and type-specific metadata
-/// needed by the <see cref="PSForge.UI.TemplateSelectors.ParameterDataTemplateSelector"/>.
+/// needed by the <see cref="PSBench.UI.TemplateSelectors.ParameterDataTemplateSelector"/>.
 ///
 /// The partial keyword enables CommunityToolkit.Mvvm source generators to
 /// produce INotifyPropertyChanged boilerplate from [ObservableProperty] fields.

@@ -3,7 +3,7 @@ using System.Management.Automation;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace PSForge.Services;
+namespace PSBench.Services;
 
 /// <summary>
 /// Converts PowerShell output objects (PSObject graphs) into displayable formats.
