@@ -53,6 +53,27 @@ jobs:
             --self-contained false `
             -o bin/publish
       
+      - name: Publish portable single exe (self-contained)
+        shell: pwsh
+        run: |
+          dotnet publish PSBench.csproj `
+            -c Release `
+            -r win-x64 `
+            --self-contained true `
+            -p:PublishSingleFile=true `
+            -p:IncludeNativeLibrariesForSelfExtract=true `
+            -p:EnableCompressionInSingleFile=true `
+            -o bin/portable
+
+          $ver = "${{ steps.version.outputs.VERSION }}"
+          New-Item -ItemType Directory -Force -Path "bin\dist" | Out-Null
+          $exe = "bin\portable\PSBench.exe"
+          if (-not (Test-Path $exe)) { Write-Error "Portable exe not found at $exe"; exit 1 }
+          $out = "bin\dist\PSBench_${ver}_x64-portable.exe"
+          Copy-Item $exe $out -Force
+          $sizeMB = [math]::Round((Get-Item $out).Length / 1MB, 2)
+          Write-Host "✓ Portable exe: $out ($sizeMB MB)"
+
       - name: Install NSIS
         run: |
           choco install nsis -y
@@ -91,16 +112,18 @@ jobs:
             ## PSBench ${{ steps.version.outputs.VERSION }}
             
             ### Installation
-            
+
+            **Installer** (recommended)
             1. Download `PSBench-${{ steps.version.outputs.VERSION }}-Setup.exe`
-            2. Run the installer
-            3. The installer will detect and offer to install .NET 8.0 Desktop Runtime if missing
-            4. Launch PSBench from the Start Menu
-            
+            2. Run the installer (detects/offers .NET 8.0 Desktop Runtime if missing)
+            3. Launch PSBench from the Start Menu
+
+            **Portable** — download `PSBench_${{ steps.version.outputs.VERSION }}_x64-portable.exe` and run it directly. Self-contained: no .NET runtime or install required.
+
             ### Requirements
-            
+
             - Windows 10 x64 or higher
-            - .NET 8.0 Desktop Runtime (installer handles this automatically)
+            - .NET 8.0 Desktop Runtime (installer only; portable exe bundles it)
             - PowerShell 5.0 or higher
             
             ### What's Changed
@@ -108,6 +131,7 @@ jobs:
             See the commit history for details.
           files: |
             bin/installer/PSBench-${{ steps.version.outputs.VERSION }}-Setup.exe
+            bin/dist/PSBench_${{ steps.version.outputs.VERSION }}_x64-portable.exe
           draft: false
           prerelease: false
         env:
